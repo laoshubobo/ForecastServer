@@ -21,7 +21,7 @@ object ForecastHttpServer extends IOApp {
     val dsl = Http4sDsl[F]
     import dsl._
     HttpRoutes.of[F] {
-      //Usage: http://localhost:8080/api/forecast?latitude=38.6484'&longitude=-121.7339
+      //Usage: http://localhost:8080/api/forecast?latitude=38.6484&longitude=-121.7339
       case GET -> Root / "forecast" :? LatitudeQueryParamMatcher(latitude) +& LongitudeQueryParamMatcher(longitude) =>
         latitude match {
           case validatedLatitude =>

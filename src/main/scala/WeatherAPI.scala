@@ -4,9 +4,9 @@ import sttp.client3._
 import sttp.client3.sprayJson._
 
 object WeatherAPI {
-  private case class PointsResponse(properties: PointsProperties)
+  case class PointsResponse(properties: PointsProperties)
 
-  private case class PointsProperties(forecast: String)
+  case class PointsProperties(forecast: String)
 
   def getGridForecastURI(latitude: Float, longitude: Float): Either[ResponseException[String, Exception], PointsResponse] = {
 
@@ -25,11 +25,11 @@ object WeatherAPI {
   }
 
 
-  private case class GridPointsResponse(properties: GridPointsProperties)
+  case class GridPointsResponse(properties: GridPointsProperties)
 
-  private case class Period(temperature: Int, shortForecast: String)
+  case class Period(temperature: Int, shortForecast: String)
 
-  private case class GridPointsProperties(periods: List[Period])
+  case class GridPointsProperties(periods: List[Period])
 
   def getForecastResult(uriStr: String): Option[ForecastResult] = {
     val backend: SttpBackend[Identity, Any] = HttpClientSyncBackend()
